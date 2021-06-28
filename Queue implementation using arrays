@@ -1,0 +1,55 @@
+
+/*
+
+  Queue Implementation using Arrays in C 
+  By: Bhava0405
+  
+*/
+
+#include<stdio.h>
+#define MAX 5
+int queue[MAX];
+int front = 0,rear=0;
+
+void enqueue(int data)
+{
+    rear=(rear+1)%MAX; // considering the array as circular array and we use modular increment
+    if(front==rear)
+    {
+        printf("Queue is full");
+        if(rear==0)
+        {
+            rear=MAX-1;
+        }
+        else
+        {
+            rear=rear-1;
+        }
+        return;
+    }
+    queue[rear]=data;
+}
+
+int dequeue()
+{
+    if(front==rear)
+    {
+        printf("Queue is empty");
+        return -1;
+    }
+    front=(front+1)%MAX;
+    return queue[front];
+}
+
+
+void main()
+{
+    enqueue(10);
+    enqueue(20);
+    enqueue(30);
+    int x=dequeue();
+    enqueue(40);
+    int y=dequeue();
+    printf("The dequeued element is %d\n ",x);
+    printf("The dequeued element is %d\n ",y);
+}
