@@ -1,0 +1,60 @@
+/*
+
+  Stack Implementation using LinkedList in C 
+  By: Bhava0405
+  
+*/
+
+
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef struct node{
+    int data;
+    struct node *next;
+}NODE;
+
+NODE * top=0;
+
+void push(int item)
+{
+    NODE * newnode;
+    newnode=(NODE *)malloc(sizeof(NODE));
+    newnode -> data=item;
+    newnode -> next=top;
+    top=newnode;
+}
+
+int pop()
+{
+    NODE * temp=top;
+    if(top==0)
+    {
+        printf("stack is empty");
+        return 0;
+    }
+    top=top->next;
+    free(temp);
+    temp=NULL;
+}
+
+// printing the top element
+
+void peek()
+{
+    NODE * th = top;
+    if(top==0)
+    {
+        printf("stack is empty");
+        return;
+    }
+    printf("%d",th->data);
+}
+void main()
+{
+    push(10);
+    push(20);
+    push(30);
+    pop();
+    peek();
+}
